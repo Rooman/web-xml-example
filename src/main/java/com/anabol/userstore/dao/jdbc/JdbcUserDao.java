@@ -34,8 +34,11 @@ public class JdbcUserDao implements UserDao {
              PreparedStatement preparedStatement = connection.prepareStatement(FIND_BY_ID_QUERY)) {
             preparedStatement.setInt(1, id);
             try (ResultSet resultSet = preparedStatement.executeQuery();) {
-                User user = Mapper.parse(resultSet);
-                return user;
+                if (resultSet.next()) {
+                    User user = Mapper.parse(resultSet);
+                    return user;
+                }
+                return null;
             }
         } catch (SQLException e) {
             e.printStackTrace();

@@ -1,6 +1,5 @@
 package com.anabol.userstore.web.servlets;
 
-import com.anabol.userstore.ServiceLocator;
 import com.anabol.userstore.service.UserService;
 import com.anabol.userstore.web.templater.PageGenerator;
 
@@ -13,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ShowUsersServlet extends HttpServlet {
-    private UserService userService = ServiceLocator.getService(UserService.class);
+    private UserService userService;
 
     public void doGet(HttpServletRequest request,
                       HttpServletResponse response) throws ServletException, IOException {
